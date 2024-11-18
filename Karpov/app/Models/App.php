@@ -18,6 +18,6 @@ class App extends Model
 
     public function user()
     {
-        return $this->belongsTo('user_id');
+        return $this->belongsTo(User::class);
     }
 }
