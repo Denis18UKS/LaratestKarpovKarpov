@@ -29,5 +29,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/apps', [AppController::class, 'index'])->name('apps.index');
     Route::get('/apps/create', [AppController::class, 'showCreateForm'])->name('apps.create');
     Route::post('/apps', [AppController::class, 'create'])->name('apps.stores');
-    Route::patch('/apps/{id}/status', [AppController::class, 'changeStatus'])->name('apps.status');
+    Route::patch('/apps/{id}/status', [AppController::class, 'updateStatus'])->name('apps.status');
 });

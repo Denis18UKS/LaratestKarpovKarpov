@@ -44,19 +44,14 @@ class AppController extends Controller
     }
 
 
-    public function changeStatus(Request $request, $id)
+    public function updateStatus(Request $request, $id)
     {
-        $request->validate([
-
-            'status' => 'required|in:new,success,declaimed',
-        ]);
-
         $app = App::findOrFail($id);
-        if (Auth::user()->role !== 'admin') {
-            return back()->withErrors(['error' => 'Отказ в доступе']);
-        }
+        $app->status = $request->input('status');
+        $app->save();
 
-        $app->update(['status' => $request->status]);
-        return redirect()->route('apps.index')->with(['success' => 'Статус обновлён']);
+        return redirect()->back()->with('success', 'Статус успешно обновлен!');
     }
+
 }
+

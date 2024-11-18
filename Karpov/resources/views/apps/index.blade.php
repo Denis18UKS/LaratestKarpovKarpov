@@ -54,8 +54,6 @@
                                     <option value="declaimed" @if ($app->status === 'declaimed') selected @endif>Отклонить
                                     </option>
                                 </select>
-                                <button type="submit">Обновить</button>
-
                             </form>
                         @else
                             Нет доступных действий
