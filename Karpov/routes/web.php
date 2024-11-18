@@ -21,6 +21,8 @@ Route::post('/register', [AuthController::class, 'regProc'])->name('auth.regProc
 Route::get('/login', [AuthController::class, 'showLogin'])->name('auth.login');
 Route::post('/login', [AuthController::class, 'LoginProced'])->name('auth.loginProc');
 
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::middleware('auth')->group(function () {
     Route::get('/apps', [AppController::class, 'index'])->name('apps.index');
     Route::get('/apps/create', [AppController::class, 'showCreateForm'])->name('apps.create');
