@@ -30,8 +30,10 @@
             <th>Тип услуги</th>
             <th>Дата и время выполнения</th>
             <th>Адрес</th>
-            <th>ФИО пользователя</th>
+            <th>Статус</th>
             <th>Действия</th>
+            <th>ФИО пользователя</th>
+
         </thead>
 
         <tbody>
@@ -40,18 +42,20 @@
                     <td>{{$app->service_type}}</td>
                     <td>{{$app->date_time}}</td>
                     <td>{{$app->address}}</td>
+                    <td>{{$app->status}}</td>
                     <td>
                         @if (Auth::user()->role === 'admin')
-                            <form action="{{route('apps.status')}}">
+                            <form action="{{ route('apps.status', ['id' => $app->id]) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
-                                <select name="status" id="status">
+                                <select name="status" id="status" onchange="this.form.submit()">
                                     <option value="new" @if ($app->status === 'new') selected @endif>Новая</option>
                                     <option value="success" @if ($app->status === 'success') selected @endif>Принять</option>
                                     <option value="declaimed" @if ($app->status === 'declaimed') selected @endif>Отклонить
                                     </option>
                                 </select>
                                 <button type="submit">Обновить</button>
+
                             </form>
                         @else
                             Нет доступных действий
