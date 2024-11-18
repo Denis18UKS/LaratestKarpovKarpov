@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AppController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/register', [AuthController::class, 'showReg'])->name('auth.register');
+Route::post('/register', [AuthController::class, 'regProc'])->name('auth.regProc');
+
+Route::get('/login', [AuthController::class, 'showLogin'])->name('auth.login');
+Route::post('/login', [AuthController::class, 'LoginProced'])->name('auth.loginProc');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/apps', [AppController::class, 'index'])->name('apps.index');
+    Route::get('/apps/create', [AppController::class, 'showCreateForm'])->name('apps.create');
+    Route::post('/apps', [AppController::class, 'create'])->name('apps.stores');
+    Route::patch('/apps/{id}/status', [AppController::class, 'changeStatus'])->name('apps.status');
 });
