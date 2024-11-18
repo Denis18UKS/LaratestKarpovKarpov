@@ -27,7 +27,7 @@ class AppController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'service_type' => 'required|in:general_clearing, clearing_posle_remonta, clearing_office',
+            'service_type' => 'required|in:general_clearing,clearing_posle_remonta,clearing_office',
             'date_time' => 'required',
             'address' => 'required|string',
         ]);
@@ -39,7 +39,10 @@ class AppController extends Controller
             'status' => 'new',
             'user_id' => Auth::id(),
         ]);
+
+        return redirect()->route('apps.index')->with(['success' => 'Заявка успешно создана!']);
     }
+
 
     public function changeStatus(Request $request, $id)
     {

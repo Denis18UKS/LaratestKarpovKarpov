@@ -6,12 +6,23 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Создать заявку</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
 </head>
 
 <body>
     <h1>Создать заявку</h1>
+
+    @if (session('success'))
+        <p>{{ session('success') }}</p>
+    @endif
+
+    @if ($errors->any())
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
 
     <div>
         <form action="{{route('logout')}}">
@@ -20,7 +31,7 @@
         </form>
     </div>
 
-    <form action="{{route('apps.stores')}}" method="POST">
+    <form action="{{ route('apps.stores') }}" method="POST">
         @csrf
         <select name="service_type" id="service_type">
             <option value="general_clearing">Генеральная уборка</option>
@@ -29,14 +40,14 @@
         </select>
 
         <label for="date_time">Дата и время</label>
-        <input type="date" name="date_time" id="date_time">
+        <input type="date" name="date_time" id="date_time" required>
 
         <label for="address">Адрес</label>
-        <input type="text" name="address" id="address">
-
+        <input type="text" name="address" id="address" required>
 
         <button type="submit">Создать</button>
     </form>
+
 
 </body>
 
