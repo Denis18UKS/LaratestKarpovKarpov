@@ -15,7 +15,9 @@ use App\Http\Controllers\AppController;
 |
 */
 
-Route::get('/register', [AuthController::class, 'showReg'])->name('auth.register');
+
+
+Route::get('/', [AuthController::class, 'showReg'])->name('auth.register');
 Route::post('/register', [AuthController::class, 'regProc'])->name('auth.regProc');
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('auth.login');

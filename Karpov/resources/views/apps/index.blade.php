@@ -19,7 +19,7 @@
 
     <div>
         <a href="{{route('apps.create')}}">Создать заявку</a>
-        <form action="{{route('logout')}}">
+        <form action="{{route('logout')}}" method="post">
             @csrf
             <button type="submit">Выйти</button>
         </form>
