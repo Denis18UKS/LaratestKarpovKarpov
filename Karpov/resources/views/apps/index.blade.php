@@ -53,6 +53,7 @@
                                     <option value="success" @if ($app->status === 'success') selected @endif>Принять</option>
                                     <option value="declaimed" @if ($app->status === 'declaimed') selected @endif>Отклонить
                                     </option>
+                                    <!-- Обновление статуса работает без кнопки -->
                                 </select>
                             </form>
                         @else
